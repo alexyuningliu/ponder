@@ -2,7 +2,7 @@
 var Sequelize = require('sequelize');
 // create an instance of a database connection
 // which abstractly represents our app's mysql database
-var ponderDB = new Sequelize('ponder', 'root', null, {
+var ponderDB = new Sequelize('ponder', null, null, {
     dialect: "postgres",
     port:    5432,
 });
@@ -18,10 +18,27 @@ ponderDB
     }
   });
 
-var Question = sequelize.define('question', {
+//define models
+var Question = ponderDB.define('question', {
   text: {
     type: Sequelize.STRING
   }
-}
+});
 
-Question.sync({force: true})
+var Answer = ponderDB.define('answer', {
+  text: {
+    type: Sequelize.STRING
+  },
+  byName: {
+    type: Sequelize.STRING
+  },
+  inCountry: {
+    type: Sequelize.STRING
+  }
+});
+
+//export models
+module.exports = {
+  Question: Question,
+  Answer: Answer
+}
