@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,5 +56,24 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// pull in the Sequelize library
+var Sequelize = require('sequelize');
+// create an instance of a database connection
+// which abstractly represents our app's mysql database
+var ponderDB = new Sequelize('ponder', null, null, {
+    dialect: "postgres",
+    port:    5432,
+});
+
+// open the connection to our database
+ponderDB
+  .authenticate()
+  .complete(function(err) {
+    if (!!err) {
+      console.log('Unable to connect to the database:', err)
+    } else {
+      console.log('Connection has been established successfully.')
+    }
+  });
 
 module.exports = app;
