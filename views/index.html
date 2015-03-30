@@ -1,6 +1,8 @@
-<html ng-app>
+<html ng-app="Ponder">
 <head>
 	<script src="angular/angular.js"></script>
+	<script src="javascripts/app.js"></script>
+	<script src="jquery/dist/jquery.js"></script>
 	<link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	<link href="stylesheets/style.css" rel="stylesheet">
 </head>
@@ -11,7 +13,17 @@
 		<p>What is your greatest dream?</p>
 	</div>
 
-	<div>
+	<div ng-controller="AnswerController">
+		<form ng-submit="submitAnswer()">
+			<p>
+				Answer: <input type="text" ng-model="text" size="150" />
+			</p>
+			<p>
+				Name: <input type="text" ng-model="byName" />
+				Country: <input type="text" ng-model="inCountry" />
+			</p>
+				<input class="btn-primary" type="submit" value="submit" />
+		</form>
 	</div>
 
 	<div>

@@ -6,10 +6,26 @@ var Answer = require('../models/index.js').Answer;
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	//create tables if necessary
-	Question.sync();
-	Answer.sync();
-	Question.create({text: "Where do you want to travel to next?"});
+	// Question.create({text: "Where do you want to travel to next?"});
+	Question.findAll({limit: 10}).then(function(question) {
+		console.log(question[0].dataValues.text);
+	});
 	res.render('index.html');
+});
+
+router.post('/submit', function(req, res, next) {
+	var text = req.body.text;
+	var byName = req.body.byName;
+	var inCountry = req.body.inCountry;
+
+	Answer.create({
+		text: text,
+		byName: byName,
+		inCountry: inCountry
+	});
+
+	//send response
+	res.send("Created answer!")
 });
 
 module.exports = router;
