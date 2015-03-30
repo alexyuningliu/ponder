@@ -16,14 +16,15 @@
 	<div ng-controller="AnswerController">
 		<form ng-submit="submitAnswer()">
 			<p>
-				Answer: <input type="text" ng-model="text" size="150" />
+				Answer: <input type="text" class="form-control" ng-model="text" />
 			</p>
 			<p>
-				Name: <input type="text" ng-model="byName" />
-				Country: <input type="text" ng-model="inCountry" />
+				Name: <input type="text" class="form-control" ng-model="byName" />
+				Country: <input type="text" class="form-control" ng-model="inCountry" />
 			</p>
-				<input class="btn-primary" type="submit" value="submit" />
+				<input class="btn btn-default" type="submit" value="submit" />
 		</form>
+		{{text}}
 	</div>
 
 	<div>
