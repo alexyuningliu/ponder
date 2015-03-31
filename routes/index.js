@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/answer', function(req, res, next) {
 	Answer.findAll({limit: 5, order: '"updatedAt" DESC'}).then(function(answers) {
-		console.log(answers);
 		return res.json(answers);
 	})
 })

@@ -20,7 +20,6 @@ app.controller('AnswerController', function ($scope, $http) {
 	$http.get('answer')
 		.success(function(data) {
 			$scope.answerData = data;
-			console.log(data);
 		})
 		.error(function(error) {
 			console.log('Error: ' + error);

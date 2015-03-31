@@ -3,6 +3,10 @@
 	<script src="angular/angular.js"></script>
 	<script src="javascripts/app.js"></script>
 	<script src="jquery/dist/jquery.js"></script>
+	<script src="socket.io-client/socket.io.js"></script>
+	<script>
+	  var socket = io();
+	</script>
 	<link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	<link href="stylesheets/style.css" rel="stylesheet">
 </head>
@@ -25,7 +29,9 @@
 				<input class="btn btn-default" type="submit" value="submit" />
 		</form>
 		<div ng-repeat='answer in answerData'>
-			{{answer.text}}
+			<p>{{answer.text}}</br>
+				{{answer.byName}}
+			</p>
 		</div>
 	</div>
 
