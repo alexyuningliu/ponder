@@ -24,4 +24,14 @@ app.controller('AnswerController', function ($scope, $http) {
 		.error(function(error) {
 			console.log('Error: ' + error);
 		})
+
+	socket.on('submissionReceived', function(){
+		$http.get('answer')
+			.success(function(data) {
+				$scope.answerData = data;
+			})
+			.error(function(error) {
+				console.log('Error: ' + error);
+			})
+	})
 });

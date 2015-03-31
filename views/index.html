@@ -3,10 +3,6 @@
 	<script src="angular/angular.js"></script>
 	<script src="javascripts/app.js"></script>
 	<script src="jquery/dist/jquery.js"></script>
-	<script src="socket.io-client/socket.io.js"></script>
-	<script>
-	  var socket = io();
-	</script>
 	<link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	<link href="stylesheets/style.css" rel="stylesheet">
 </head>
@@ -18,7 +14,7 @@
 	</div>
 
 	<div ng-controller="AnswerController">
-		<form ng-submit="submitAnswer()">
+		<form id="answerForm" ng-submit="submitAnswer()">
 			<p>
 				Answer: <input type="text" class="form-control" ng-model="text" required/>
 			</p>
@@ -34,6 +30,16 @@
 			</p>
 		</div>
 	</div>
+
+	<script src="socket.io-client/socket.io.js"></script>
+	<script>
+	  var socket = io();
+	  $( "#answerForm" ).on("submit", function(){
+	  	console.log('SOCKET SUBMIT!');
+	    socket.emit('submission');
+	    return false;
+	  });
+	</script>
 
 </body>
 </html>

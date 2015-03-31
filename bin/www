@@ -27,6 +27,16 @@ var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
   console.log('a user connected');
+
+  socket.on('submission', function(){
+    console.log('SUBMISSION RECEIVED!');
+    io.emit('submissionReceived');
+    console.log('EMISSION SENT!')
+  })
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
 })
 
 /**
