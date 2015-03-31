@@ -13,7 +13,14 @@ router.get('/', function(req, res, next) {
 	res.render('index.html');
 });
 
-router.post('/submit', function(req, res, next) {
+router.get('/answer', function(req, res, next) {
+	Answer.findAll({limit: 5, order: '"updatedAt" DESC'}).then(function(answers) {
+		console.log(answers);
+		return res.json(answers);
+	})
+})
+
+router.post('/answer', function(req, res, next) {
 	var text = req.body.text;
 	var byName = req.body.byName;
 	var inCountry = req.body.inCountry;

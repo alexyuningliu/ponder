@@ -16,18 +16,18 @@
 	<div ng-controller="AnswerController">
 		<form ng-submit="submitAnswer()">
 			<p>
-				Answer: <input type="text" class="form-control" ng-model="text" />
+				Answer: <input type="text" class="form-control" ng-model="text" required/>
 			</p>
 			<p>
-				Name: <input type="text" class="form-control" ng-model="byName" />
-				Country: <input type="text" class="form-control" ng-model="inCountry" />
+				Name: <input type="text" class="form-control" ng-model="byName" required/>
+				Country: <input type="text" class="form-control" ng-model="inCountry" required/>
 			</p>
 				<input class="btn btn-default" type="submit" value="submit" />
 		</form>
-		{{text}}
+		<div ng-repeat='answer in answerData'>
+			{{answer.text}}
+		</div>
 	</div>
 
-	<div>
-	</div>
 </body>
 </html>

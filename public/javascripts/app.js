@@ -1,13 +1,14 @@
 // controllers for angular
 var app = angular.module('Ponder', []);
 
-app.controller('AnswerController', ["$scope", function ($scope) {
+app.controller('AnswerController', function ($scope, $http) {
 	$scope.text;
 	$scope.byName;
 	$scope.inCountry;
+	$scope.answerData = {};
 	$scope.submitAnswer = function() {
 		console.log("Answer submitted!");
-		$.post("submit", {
+		$.post("answer", {
 			text: $scope.text,
 			byName: $scope.byName,
 			inCountry: $scope.inCountry
@@ -15,4 +16,13 @@ app.controller('AnswerController', ["$scope", function ($scope) {
 			console.log("Should be done")
 		})
 	}
-}]);
+
+	$http.get('answer')
+		.success(function(data) {
+			$scope.answerData = data;
+			console.log(data);
+		})
+		.error(function(error) {
+			console.log('Error: ' + error);
+		})
+});
